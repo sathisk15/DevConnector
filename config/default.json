@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://DevConnector:DevConnector@devconnector.zgpou.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://DevConnector:DevConnector@devconnector.zgpou.mongodb.net/DevConnector?retryWrites=true&w=majority",
+  "jwtSecret": "my_secret_token"
 }
