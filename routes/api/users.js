@@ -7,8 +7,8 @@ const config = require("config");
 const { check, validationResult } = require("express-validator");
 const User = require("../../models/User");
 
-// @route   GET api/users
 // @desc    Register user
+// @route   GET api/users
 // @access  Public
 
 router.post(
@@ -42,10 +42,14 @@ router.post(
         r: "pg",
         d: "mm",
       });
+
+      // Inserting into Database
       user = new User({ name, email, avatar, password });
-      // Encrypt password
-      const salt = await bcrypt.genSalt(10);
-      user.password = await bcrypt.hash(password, salt);
+      {
+        // Encrypt password
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(password, salt);
+      }
       await user.save();
 
       // Return jsonwebtoken
