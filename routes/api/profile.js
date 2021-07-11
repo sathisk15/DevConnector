@@ -108,12 +108,10 @@ router.post(
 
 router.get("/", async (req, res) => {
   try {
-    // To get all the fields in DB
     const profiles = await Profile.find().populate("user", ["name", "avatar"]);
-
     res.json(profiles);
-  } catch (error) {
-    console.log(error.message);
+  } catch (err) {
+    console.error(err.message);
     res.status(500).send("Server Error");
   }
 });
@@ -138,7 +136,7 @@ router.get("/user/:user_id", async (req, res) => {
 });
 
 // @route   GET api/profile/
-// @desc    Delete profile, user and Posts
+// @desc    Delete Profile, user and Posts
 // @access  Private
 
 router.delete("/", auth, async (req, res) => {
