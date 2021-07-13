@@ -35,17 +35,16 @@ router.post(
   }
 );
 
-// @route   GET api/post
-// @desc    Get all post
-// @access  Private
-
+// @route    GET api/posts
+// @desc     Get all posts
+// @access   Private
 router.get("/", auth, async (req, res) => {
   try {
-    const post = await Post.find().sort({ date: -1 });
-    res.json(post);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json("Server Error");
+    const posts = await Post.find().sort({ date: -1 });
+    res.json(posts);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
   }
 });
 
